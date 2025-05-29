@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Fortius Minechem Pvt Ltd</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #D1E2F3;
+            color: #032A42;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: #f1e7d9;
+            color: #032A42;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar img {
+            height: 40px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #26578b;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content (flex-grow to push footer down) */
+        .main-content {
+            flex: 1;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .main-content h1 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #032A42;
+        }
+
+        /* Contact Cards */
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-card {
+            width: 300px;
+            padding: 30px;
+            background-color: #FFF9F0;
+            border: 1px solid #26578b;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-card h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #26578b;
+        }
+
+        .contact-card p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .contact-card a {
+            color: #26578b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer (Always at Bottom) */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #77a6e0;
+            color: #26578b;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1><img src="logo.png" alt="Fortius Logo"></h1>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#products">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html#gallery">Gallery</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Contact Us</h1>
+
+        <div class="card-container">
+            <!-- Email Card -->
+            <div class="contact-card">
+                <h2>Email Us</h2>
+                <p>For inquiries and business collaborations:</p>
+                <p><a href="mailto:info@fortiusminechem.com">info@fortiusminechem.com</a></p>
+            </div>
+
+            <!-- Phone Card -->
+            <div class="contact-card">
+                <h2>Call Us</h2>
+                <p>Reach out to us directly:</p>
+                <p>+91-9876543210</p>
+            </div>
+        </div>
+
+        <p style="margin-top: 40px;">
+            <a href="index.html">Back to Home</a>
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2024 Fortius Minechem Pvt Ltd. All Rights Reserved.
+    </footer>
+
+</body>
+
+</html>

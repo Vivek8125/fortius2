@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortius Minechem Pvt Ltd</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --text-color: #333;
+            --bg-color: #fff;
+            --card-bg: #f8f9fa;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #4cc9f0;
+            --secondary-color: #b5179e;
+            --text-color: #f8f9fa;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: var(--transition);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--bg-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 5%;
+        }
+
+        .logo-container img {
+            height: 50px;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled .logo-container img {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary-color);
+            transform: rotate(30deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8rem 5% 5rem;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .hero-text {
+            width: 50%;
+        }
+
+        .hero-text h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .hero-text h2 span {
+            color: #f8b400;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        .hero a {
+            text-decoration: none;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-block;
+            transition: var(--transition);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero img {
+            width: 40%;
+            border-radius: 10px;
+            transition: var(--transition);
+            /* box-shadow: var(--shadow); */
+        }
+
+        .hero img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 5%;
+            background-color: var(--bg-color);
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .products h2::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+
+        .products-slider {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-slide {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-slide:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-slide:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .product-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .product-content {
+            flex: 1;
+        }
+
+        .product-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .product-content h3::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: -0.5rem;
+            left: 0;
+        }
+
+        .product-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features {
+            margin: 1.5rem 0;
+        }
+
+        .product-features h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .product-features ul {
+            columns: 2;
+            column-gap: 2rem;
+        }
+
+        .product-features li {
+            margin-bottom: 0.5rem;
+            list-style-type: none;
+            position: relative;
+            padding-left: 1.5rem;
+            break-inside: avoid;
+        }
+
+        .product-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .product-cta {
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 5rem 5%;
+            background-color: var(--card-bg);
+            text-align: center;
+        }
+
+        .gallery h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .gallery h2::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            border-radius: 10px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .photo-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 5%;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .product-slide {
+                flex-direction: column !important;
+                gap: 2rem;
+            }
+            
+            .product-features ul {
+                columns: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--bg-color);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 6rem 5% 3rem;
+            }
+
+            .hero-text, .hero img {
+                width: 100%;
+            }
+
+            .hero img {
+                margin-top: 2rem;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .product-cta {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="./IMG/logo.png" alt="Fortius Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </li>
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <section class="hero" id="about">
+        <div class="hero-text">
+            <h2>Welcome to <span>Fortius Minechem</span></h2>
+            <p>Leading manufacturer of high-quality Calcium Carbonate and Dolomite. Serving industries with top-grade minerals for enhanced performance and sustainability.</p>
+            <a href="contact.html">Get in Touch</a>
+        </div>
+        <img src="./IMG/logo.png" alt="Fortius Minechem Factory">
+    </section>
+
+    <section class="products" id="products">
+        <h2>Our Products</h2>
+        
+        <div class="products-slider">
+            <!-- Calcite Powder -->
+            <div class="product-slide">
+                <div class="product-image">
+                    <img src="./IMG/PC1.jpg" alt="Calcite Powder">
+                </div>
+                <div class="product-content">
+                    <h3>Calcite Powder</h3>
+                    <p>Fortius Minechem's premium Calcite Powder is manufactured from Gcc ground calcium carbonate using advanced processing technology. Our product offers exceptional brightness and consistent particle size distribution, making it ideal for demanding industrial applications.</p>
+                    
+                    <div class="product-features">
+                        <h4>Key Specifications:</h4>
+                        <ul>
+                            <li>Brightness: 95-98% (ISO standard)</li>
+                            <li>Particle Size: 100-500 Mesh</li>
+                            <li>CaCO3 Content: >98.5% purity</li>
+                            <li>Moisture Content: <0.5%</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="product-cta">
+                        <a href="product-details.html?product=calcite-powder" class="btn btn-outline">Read More</a>
+                        <a href="contact.html" class="btn">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Dolomite -->
+            <div class="product-slide">
+                <div class="product-image">
+                    <img src="./IMG/PD1.jpg" alt="Dolomite Powder">
+                </div>
+                <div class="product-content">
+                    <h3>Dolomite Powder</h3>
+                    <p>Our high-purity Dolomite Powder is sourced from carefully selected deposits and processed to maintain optimal magnesium content. The product's excellent thermal stability and chemical composition make it indispensable for steel manufacturing, glass production, and construction applications.</p>
+                    
+                    <div class="product-features">
+                        <h4>Key Specifications:</h4>
+                        <ul>
+                            <li>MgO Content: 18-22%</li>
+                            <li>CaO Content: 28-32%</li>
+                            <li>SiO2 Content: <1.5%</li>
+                            <li>Particle Size: 10-500 microns (customizable)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="product-cta">
+                        <a href="product-details.html?product=dolomite-powder" class="btn btn-outline">Read More</a>
+                        <a href="contact.html" class="btn">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Micronized Calcite -->
+            <div class="product-slide">
+                <div class="product-image">
+                    <img src="./IMG/PM1.jpg" alt="Micronized Calcite">
+                </div>
+                <div class="product-content">
+                    <h3>Micronized Calcite</h3>
+                    <p>Fortius Minechem's Micronized Calcite represents the pinnacle of mineral processing technology. With ultra-fine particle size distribution and high surface area, this product delivers exceptional performance in premium applications including paints, plastics, and pharmaceuticals.</p>
+                    
+                    <div class="product-features">
+                        <h4>Key Specifications:</h4>
+                        <ul>
+                            <li>Particle Size: 2-20 microns (D50)</li>
+                            <li>Surface Area: 1.5-3.5 m²/g (BET)</li>
+                            <li>Brightness: 96-98%</li>
+                            <li>Oil Absorption: 14-20 g/100g</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="product-cta">
+                        <a href="product-details.html?product=micronized-calcite" class="btn btn-outline">Read More</a>
+                        <a href="contact.html" class="btn">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <h2>Our Gallery</h2>
+        <div class="photo-grid">
+            <img src="./IMG/5.jpg" alt="Mining Operations">
+            <img src="./IMG/1.jpg" alt="Processing Plant">
+            <img src="./IMG/7.jpg" alt="Quality Control">
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 Fortius Minechem Pvt Ltd. All Rights Reserved.</p>
+        <p>Fortius Minechem Private Limited, Abu Highway, Gujarat - 385001, India</p>
+        <p>Contact: info@fortiusminechem.com | +91 9979230766</p>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const icon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            
+            // Save preference to localStorage
+            localStorage.setItem('theme', newTheme);
+        });
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.querySelector('i').className = 
+                navLinks.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.product-slide').forEach(slide => {
+            observer.observe(slide);
+        });
+    </script>
+</body>
+</html>
